@@ -4,9 +4,14 @@ server:
     encoding:
       force: true
 
+logging:
+  level:
+    org.springframework: DEBUG
+
 spring:
   profiles:
     active: dev
+    include: oauth
   jpa:
     show-sql: true
     properties:
@@ -19,6 +24,11 @@ spring:
       driver-class-name: org.h2.Driver
   h2:
     console:
+      enabled: true
+  devtools:
+    livereload:
+      enabled: true
+    restart:
       enabled: true
 
 
