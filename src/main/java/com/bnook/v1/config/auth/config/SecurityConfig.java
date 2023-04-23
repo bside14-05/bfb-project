@@ -36,7 +36,7 @@ public class SecurityConfig {
 //    private final CustomUserDetailsService customUserDetailsService;
 
     private static final String [] WHITELIST_URI = {
-            "/**", "/images/**", "/js/**", "/webjars/**", "/css/**", "/h2-console/**", "/v3/api-docs/**", "/swagger-ui/**"
+            "/**", "/images/**", "/js/**", "/webjars/**", "/css/**", "/h2-console/**", "/v3/api-docs/**", "/swagger-ui/**", "/login**", "/error**"
     };
 
     @Bean
@@ -51,6 +51,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
+                .formLogin().disable()
+                .csrf().disable()
                 .headers().frameOptions().disable()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -64,6 +66,7 @@ public class SecurityConfig {
                 .and()
                     .successHandler(oAuth2LoginSuccessHandler)
                     .failureHandler(oAuth2LoginFailureHandler)
+                .and().logout().invalidateHttpSession(true).clearAuthentication(true).logoutSuccessUrl("/login?logout")
                 ;
 
 //        http.addFilterBefore(jwtAuthenticationProcessingFilter(), UsernamePasswordAuthenticationFilter.class);

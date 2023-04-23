@@ -1,6 +1,6 @@
 package com.bnook.v1.config.auth.filter;
 
-import com.bnook.v1.config.auth.dto.Constants;
+import com.bnook.v1.config.auth.dto.AuthConstants;
 import com.bnook.v1.config.auth.service.JwtService;
 import com.bnook.v1.domain.user.User;
 import com.bnook.v1.domain.user.UserRepository;
@@ -19,7 +19,6 @@ import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMap
 import org.springframework.security.core.authority.mapping.NullAuthoritiesMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -55,7 +54,7 @@ public class JwtAuthenticationProcessingFilter extends OncePerRequestFilter {
             return;
         }
 
-        String refreshToken = jwtService.extractToken(request, Constants.REFRESH_TOKEN_SUBJECT)
+        String refreshToken = jwtService.extractToken(request, AuthConstants.REFRESH_TOKEN_SUBJECT)
                 .filter(jwtService::validateToken)
                 .orElse(null);
 
@@ -82,7 +81,7 @@ public class JwtAuthenticationProcessingFilter extends OncePerRequestFilter {
     }
     protected void checkAccessTokenAndAuthentication(HttpServletRequest request, HttpServletResponse response,
                                                      FilterChain filterChain) throws ServletException, IOException {
-        jwtService.extractToken(request, Constants.ACCESS_TOKEN_SUBJECT)
+        jwtService.extractToken(request, AuthConstants.ACCESS_TOKEN_SUBJECT)
                 .filter(jwtService::validateToken)
                 .ifPresent(accessToken -> jwtService.extractEmail(accessToken)
                         .ifPresent(email-> userRepository.findByEmail(email)

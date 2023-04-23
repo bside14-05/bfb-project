@@ -1,10 +1,14 @@
 package com.bnook.v1.domain.user;
 
 import com.bnook.v1.domain.BaseEntity;
+import com.bnook.v1.domain.bookstore.Bookstore;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @desc: 사용자 정보를 저장하는 Entity
@@ -26,6 +30,10 @@ public class User extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany
+    @JoinColumn(name = "userId")
+    private List<Bookstore> myBookstores = new ArrayList<>();
 
     @Builder
     public User(int registrationNo, String id, String email, String nickName, Role role) {

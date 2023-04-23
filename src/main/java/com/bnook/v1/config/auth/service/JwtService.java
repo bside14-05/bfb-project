@@ -2,7 +2,7 @@ package com.bnook.v1.config.auth.service;
 
 
 import com.auth0.jwt.algorithms.Algorithm;
-import com.bnook.v1.config.auth.dto.Constants;
+import com.bnook.v1.config.auth.dto.AuthConstants;
 import com.bnook.v1.domain.user.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -46,7 +46,7 @@ public class JwtService {
         Date now = new Date();
         return com.auth0.jwt.JWT.create()
                 // Payload 생성
-                .withSubject(Constants.REFRESH_TOKEN_SUBJECT)
+                .withSubject(AuthConstants.REFRESH_TOKEN_SUBJECT)
                 .withExpiresAt(new Date(now.getTime() + refreshTokenExpirationPeriod))
 
                 // Claim
@@ -59,7 +59,7 @@ public class JwtService {
     public String createRefreshToken() {
         Date now = new Date();
         return com.auth0.jwt.JWT.create()
-                .withSubject(Constants.REFRESH_TOKEN_SUBJECT)
+                .withSubject(AuthConstants.REFRESH_TOKEN_SUBJECT)
                 .withExpiresAt(new Date(now.getTime() + refreshTokenExpirationPeriod))
                 .sign(Algorithm.HMAC512(secretKey));
     }
