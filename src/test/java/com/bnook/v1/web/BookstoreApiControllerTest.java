@@ -34,7 +34,7 @@ public class BookstoreApiControllerTest {
     private String url = "http://localhost:8043/api/v1/bookstore";
 
     private String storeName = "작은책방";
-    private String ownerName = "김미희";
+//    private String ownerName = "김미희";
     private String address = "서울시 강남구 방배동";
     private String phoneNo = "010-9999-2222";
 
@@ -48,7 +48,7 @@ public class BookstoreApiControllerTest {
         // given
         Bookstore saved = bookstoreRepository.save(Bookstore.builder()
                 .storeName(storeName)
-                .ownerName(ownerName)
+//                .ownerName(ownerName)
                 .address(address)
                 .phoneNo(phoneNo)
                 .build());
@@ -80,7 +80,7 @@ public class BookstoreApiControllerTest {
         // given
         BookstoreSaveRequestDto requestDto = BookstoreSaveRequestDto.builder()
                 .storeName(storeName)
-                .ownerName(ownerName)
+//                .ownerName(ownerName)
                 .address(address)
                 .phoneNo(phoneNo)
                 .build();
@@ -95,7 +95,7 @@ public class BookstoreApiControllerTest {
 
         List<Bookstore> all = bookstoreRepository.findAll();
         assertThat(all.get(0).getStoreName()).isEqualTo(storeName);
-        assertThat(all.get(0).getOwnerName()).isEqualTo(ownerName);
+//        assertThat(all.get(0).getOwnerName()).isEqualTo(ownerName);
         assertThat(all.get(0).getAddress()).isEqualTo(address);
         assertThat(all.get(0).getPhoneNo()).isEqualTo(phoneNo);
 

@@ -38,7 +38,12 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
-	implementation 'com.h2database:h2'
+	//h2 DB
+//	implementation 'com.h2database:h2'
+	
+	//maria DB
+	implementation 'org.mariadb.jdbc:mariadb-java-client:3.1.2'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 
 }
 

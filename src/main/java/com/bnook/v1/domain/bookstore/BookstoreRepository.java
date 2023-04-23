@@ -9,4 +9,6 @@ public interface BookstoreRepository extends JpaRepository<Bookstore, Long> {
 
     @Query("SELECT b FROM Bookstore b ORDER BY b.storeId DESC")
     List<Bookstore> findAllDesc();
+
+
 }

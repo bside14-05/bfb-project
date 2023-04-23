@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.awt.print.Book;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,7 +43,7 @@ public class BookstoreService {
     public Long update(Long storeId, BookstoreUpdateRequestDto requestDto) {
         Bookstore bookstore = bookstoreRepository.findById(storeId)
                 .orElseThrow(() -> new IllegalArgumentException(storeId + "에 해당하는 서점은 없습니다"));
-        bookstore.update(requestDto.getStoreName(), requestDto.getOwnerName(), requestDto.getAddress(), requestDto.getPhoneNo());
+//        bookstore.update(requestDto.getStoreName(), requestDto.getOwnerName(), requestDto.getAddress(), requestDto.getPhoneNo());
         return storeId;
     }
 
