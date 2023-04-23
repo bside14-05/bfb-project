@@ -23,6 +23,10 @@ public class SecurityConfig {
 
     private final CustomOAuth2UserService customOAuth2UserService;
 
+    private static final String [] WHITE_LIST_PAGES = {
+            "/images/**", "/js/**", "/webjars/**", "/css/**", "/h2-console/**", "/v3/api-docs/**", "/swagger-ui/**"
+    };
+
     /**
      * Spring Security 5.7버전 이상부터는 Spring Security의 설정 시 설정 메소드를 @Bean을 통해 빈으로 등록해서 컨테이너가 관리하도록 사용
      */
@@ -33,8 +37,8 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests(authz -> authz
-                            .requestMatchers("/", "/login/**").permitAll()
-                            .requestMatchers("/api/v1/**").hasAnyRole(Role.USER.name())
+                            .requestMatchers(WHITE_LIST_PAGES).permitAll()
+//                            .requestMatchers("/api/v1/**").hasAnyRole(Role.USER.name())
                             .anyRequest().authenticated())
                 .oauth2Login(conf ->conf.userInfoEndpoint().userService(customOAuth2UserService))
 //                .successHandler()
@@ -42,12 +46,6 @@ public class SecurityConfig {
                 ;
 
         return http.build();
-    }
-
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring().requestMatchers("/images/**", "/js/**", "/webjars/**", "/css/**")
-                .requestMatchers(new AntPathRequestMatcher("/h2-console/**"));
     }
 
 }

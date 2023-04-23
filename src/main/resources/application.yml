@@ -12,6 +12,9 @@ spring:
   profiles:
     active: dev
     include: oauth
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   jpa:
     show-sql: true
     properties:
