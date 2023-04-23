@@ -11,7 +11,9 @@ logging:
 spring:
   profiles:
     active: dev
-    include: oauth
+    include:
+      - jwt
+      - oauth
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -33,5 +35,3 @@ spring:
       enabled: true
     restart:
       enabled: true
-
-

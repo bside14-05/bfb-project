@@ -3,7 +3,10 @@ package com.bnook.v1.config.auth.service;
 import com.bnook.v1.config.auth.dto.CustomOAuth2User;
 import com.bnook.v1.config.auth.dto.OAuth2UserInfo;
 import com.bnook.v1.config.auth.dto.OAuthAttributes;
-import com.bnook.v1.domain.user.*;
+import com.bnook.v1.domain.user.Provider;
+import com.bnook.v1.domain.user.User;
+import com.bnook.v1.domain.user.UserId;
+import com.bnook.v1.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -45,22 +48,24 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         Map<String, Object> attributes = oAuth2User.getAttributes();
         OAuthAttributes extractAttributes = OAuthAttributes.of(registrationId, userNameAttributeName, attributes);
 
-        User user = saveOrUpdate(extractAttributes, registrationId);
+        User user = findUser(extractAttributes, registrationId);
 
         return new CustomOAuth2User(Collections.singleton(new SimpleGrantedAuthority(user.getRole().getRoleKey()))
                 , attributes
                 , extractAttributes.getNameAttributeKey()
+                , user.getEmail()
                 , user.getRole());
     }
 
-    private User saveOrUpdate(OAuthAttributes attributes, String registrationId) {
+    private User findUser(OAuthAttributes attributes, String registrationId) {
         OAuth2UserInfo userInfo = attributes.getOAuth2UserInfo();
         int registrationNo = Optional.ofNullable(Provider.valueOf(registrationId.toUpperCase()).getRegistrationNo()).orElse(0);
 
         User user = userRepository.findByUserId(new UserId(registrationNo, userInfo.getId()))
-                .map(entity -> entity.update(userInfo.getEmail(), userInfo.getNickname()))
+                .map(entity -> entity.update(userInfo.getNickname()))
                 .orElse(attributes.toEntity(registrationNo, userInfo));
 
         return userRepository.save(user);
     }
+
 }

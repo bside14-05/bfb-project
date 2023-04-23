@@ -56,6 +56,8 @@ dependencies {
 	// jwt
 	implementation 'com.auth0:java-jwt:4.2.1'
 
+	implementation 'org.passay:passay:1.6.2'
+
 }
 
 tasks.named('test') {

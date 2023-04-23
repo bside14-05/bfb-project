@@ -10,7 +10,11 @@ public interface UserRepository extends JpaRepository<User, UserId> {
     @Query("SELECT u FROM User u WHERE u.registrationNo = :#{#userId.registrationNo} AND u.id = :#{#userId.id}")
     Optional<User> findByUserId(UserId userId);
 
-//    Optional<User> findByEmail(String email);
+    @Query("SELECT u FROM User u WHERE u.email = :#{#email}")
+    Optional<User> findByEmail(String email);
+
+    @Query("SELECT u FROM User u WHERE u.refreshToken = :#{#refreshToken}")
+    Optional<User> findByRefreshToken(String refreshToken);
 
 //    Optional<User> findLikedBookstores(String email);
 }

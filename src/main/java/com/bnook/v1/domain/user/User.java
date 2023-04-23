@@ -22,6 +22,8 @@ public class User extends BaseEntity {
     private String email;
     private String nickName;
 
+    private String refreshToken;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -34,14 +36,17 @@ public class User extends BaseEntity {
         this.role = role;
     }
 
-    public User update(String email, String nickName) {
-        this.email = email;
+    public User update(String nickName) {
         this.nickName = nickName;
         return this;
     }
 
-    public String getRoleKey() {
-        return this.role.getRoleKey();
+    public void authorizeUser() {
+        this.role = Role.USER;
+    }
+
+    public void updateRefreshToken(String updateRefreshToken) {
+        this.refreshToken = updateRefreshToken;
     }
 
 }
