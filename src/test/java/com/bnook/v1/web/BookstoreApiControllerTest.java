@@ -34,7 +34,6 @@ public class BookstoreApiControllerTest {
     private String url = "http://localhost:8043/api/v1/bookstore";
 
     private String storeName = "작은책방";
-//    private String ownerName = "김미희";
     private String address = "서울시 강남구 방배동";
     private String phoneNo = "010-9999-2222";
 
@@ -47,8 +46,7 @@ public class BookstoreApiControllerTest {
     public void 서점_수정된다() throws Exception {
         // given
         Bookstore saved = bookstoreRepository.save(Bookstore.builder()
-                .storeName(storeName)
-//                .ownerName(ownerName)
+                .bookstoreName(storeName)
                 .address(address)
                 .phoneNo(phoneNo)
                 .build());
@@ -59,7 +57,7 @@ public class BookstoreApiControllerTest {
                 .storeName(expectedStoreName)
                 .build();
 
-        String url = "http://localhost:8043/api/v1/bookstore/" + saved.getStoreId();
+        String url = "http://localhost:8043/api/v1/bookstore/" + saved.getBookstoreId();
 
         HttpEntity<BookstoreUpdateRequestDto> httpEntity = new HttpEntity<>(requestDto);
 
@@ -71,7 +69,7 @@ public class BookstoreApiControllerTest {
         assertThat(responseEntity.getBody()).isGreaterThan(0L);
 
         List<Bookstore> bookstoreList = bookstoreRepository.findAll();
-        assertThat(bookstoreList.get(0).getStoreName()).isEqualTo(expectedStoreName);
+        assertThat(bookstoreList.get(0).getBookstoreName()).isEqualTo(expectedStoreName);
 
     }
 
@@ -80,7 +78,6 @@ public class BookstoreApiControllerTest {
         // given
         BookstoreSaveRequestDto requestDto = BookstoreSaveRequestDto.builder()
                 .storeName(storeName)
-//                .ownerName(ownerName)
                 .address(address)
                 .phoneNo(phoneNo)
                 .build();
@@ -94,8 +91,7 @@ public class BookstoreApiControllerTest {
         assertThat(responseEntity.getBody()).isGreaterThan(0L);
 
         List<Bookstore> all = bookstoreRepository.findAll();
-        assertThat(all.get(0).getStoreName()).isEqualTo(storeName);
-//        assertThat(all.get(0).getOwnerName()).isEqualTo(ownerName);
+        assertThat(all.get(0).getBookstoreName()).isEqualTo(storeName);
         assertThat(all.get(0).getAddress()).isEqualTo(address);
         assertThat(all.get(0).getPhoneNo()).isEqualTo(phoneNo);
 

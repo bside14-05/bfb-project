@@ -27,8 +27,8 @@ public class Bookstore extends BaseEntity {
 
     private String address;
 
-    @Column(name = "phone_number")
-    private String phoneNumber;
+    @Column(name = "phone_no")
+    private String phoneNo;
 
     @Column(name = "instagram_id")
     private String instagramId;
@@ -82,11 +82,11 @@ public class Bookstore extends BaseEntity {
     private List<BusinessHours> businessHours;
 
     @Builder
-    public Bookstore(String bookstoreName, String ownerComment, String address, String phoneNumber, String instagramId, String facebookId, String blogId, String website, String programCategory1, String programCategory2, String programCategory3, boolean isBeverageAlcohol, boolean isArtExhibition, boolean isMerchandiseSale, boolean isProgramOperating, boolean isOther, boolean hasIndieBook, boolean hasSpecializedBook, boolean hasComprehensiveBook, boolean hasForeignBook) {
+    public Bookstore(String bookstoreName, String ownerComment, String address, String phoneNo, String instagramId, String facebookId, String blogId, String website, String programCategory1, String programCategory2, String programCategory3, boolean isBeverageAlcohol, boolean isArtExhibition, boolean isMerchandiseSale, boolean isProgramOperating, boolean isOther, boolean hasIndieBook, boolean hasSpecializedBook, boolean hasComprehensiveBook, boolean hasForeignBook) {
         this.bookstoreName = bookstoreName;
         this.ownerComment = ownerComment;
         this.address = address;
-        this.phoneNumber = phoneNumber;
+        this.phoneNo = phoneNo;
         this.instagramId = instagramId;
         this.facebookId = facebookId;
         this.blogId = blogId;
@@ -105,11 +105,11 @@ public class Bookstore extends BaseEntity {
         this.hasForeignBook = hasForeignBook;
     }
 
-    public void update(String bookstoreName, String ownerComment, String address, String phoneNumber, String instagramId, String facebookId, String blogId, String website, String programCategory1, String programCategory2, String programCategory3, boolean isBeverageAlcohol, boolean isArtExhibition, boolean isMerchandiseSale, boolean isProgramOperating, boolean isOther, boolean hasIndieBook, boolean hasSpecializedBook, boolean hasComprehensiveBook, boolean hasForeignBook) {
+    public void update(String bookstoreName, String ownerComment, String address, String phoneNo, String instagramId, String facebookId, String blogId, String website, String programCategory1, String programCategory2, String programCategory3, boolean isBeverageAlcohol, boolean isArtExhibition, boolean isMerchandiseSale, boolean isProgramOperating, boolean isOther, boolean hasIndieBook, boolean hasSpecializedBook, boolean hasComprehensiveBook, boolean hasForeignBook) {
         this.bookstoreName = bookstoreName;
         this.ownerComment = ownerComment;
         this.address = address;
-        this.phoneNumber = phoneNumber;
+        this.phoneNo = phoneNo;
         this.instagramId = instagramId;
         this.facebookId = facebookId;
         this.blogId = blogId;
