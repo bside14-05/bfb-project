@@ -10,24 +10,72 @@ import lombok.NoArgsConstructor;
 public class BookstoreSaveRequestDto {
     private Long storeId;
     private String storeName;
-    private String ownerName;
+    private String ownerOneWord;
     private String address;
     private String phoneNo;
+    private String instagramId;
+    private String facebookId;
+    private String blogId;
+    private String website;
+    private String businessDays;
+    private String closeDays;
+    private String prgrCtgr1;
+    private String prgrCtgr2;
+    private String prgrCtgr3;
+    private String beverageYnCtgr;
+    private String artYnCtgr;
+    private String productYnCtgr;
+    private String indpnBookFilter;
+    private String spclBookFilter;
+    private String cmprnBookFilter;
+    private String forgnBookFilter;
 
     @Builder
-    public BookstoreSaveRequestDto(String storeName, String ownerName, String address, String phoneNo) {
-        this.storeName = storeName;
-        this.ownerName = ownerName;
-        this.address = address;
-        this.phoneNo = phoneNo;
+    public BookstoreSaveRequestDto(String storeName, String ownerOneWord, String address, String phoneNo, String instagramId, String facebookId, String blogId, String website, String businessDays, String closeDays, String prgrCtgr1, String prgrCtgr2, String prgrCtgr3, String beverageYnCtgr, String artYnCtgr, String productYnCtgr, String indpnBookFilter, String spclBookFilter, String cmprnBookFilter, String forgnBookFilter) {
+            this.storeName = storeName;
+            this.ownerOneWord = ownerOneWord;
+            this.address = address;
+            this.phoneNo = phoneNo;
+            this.instagramId = instagramId;
+            this.facebookId = facebookId;
+            this.blogId = blogId;
+            this.website = website;
+            this.businessDays = businessDays;
+            this.closeDays = closeDays;
+            this.prgrCtgr1 = prgrCtgr1;
+            this.prgrCtgr2 = prgrCtgr2;
+            this.prgrCtgr3 = prgrCtgr3;
+            this.beverageYnCtgr = beverageYnCtgr;
+            this.artYnCtgr = artYnCtgr;
+            this.productYnCtgr = productYnCtgr;
+            this.indpnBookFilter = indpnBookFilter;
+            this.spclBookFilter = spclBookFilter;
+            this.cmprnBookFilter = cmprnBookFilter;
+            this.forgnBookFilter = forgnBookFilter;
     }
 
     public Bookstore toEntity() {
         return Bookstore.builder()
                 .storeName(storeName)
-                .ownerName(ownerName)
+                .ownerOneWord(ownerOneWord)
                 .address(address)
                 .phoneNo(phoneNo)
+                .instagramId(instagramId)
+                .facebookId(facebookId)
+                .blogId(blogId)
+                .website(website)
+                .businessDays(businessDays)
+                .closeDays(closeDays)
+                .prgrCtgr1(prgrCtgr1)
+                .prgrCtgr2(prgrCtgr2)
+                .prgrCtgr3(prgrCtgr3)
+                .beverageYnCtgr(beverageYnCtgr)
+                .artYnCtgr(artYnCtgr)
+                .productYnCtgr(productYnCtgr)
+                .indpnBookFilter(indpnBookFilter)
+                .spclBookFilter(spclBookFilter)
+                .cmprnBookFilter(cmprnBookFilter)
+                .forgnBookFilter(forgnBookFilter)
                 .build();
     }
 }

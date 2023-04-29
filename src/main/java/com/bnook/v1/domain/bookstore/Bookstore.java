@@ -124,4 +124,4 @@ public class Bookstore extends BaseEntity {
         this.forgnBookFilter = forgnBookFilter;
     }
 }
-}
+
