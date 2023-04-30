@@ -54,7 +54,7 @@ public class BookstoreApiControllerTest {
         String expectedStoreName = "큰책방";
 
         BookstoreUpdateRequestDto requestDto = BookstoreUpdateRequestDto.builder()
-                .storeName(expectedStoreName)
+                .bookstoreName(expectedStoreName)
                 .build();
 
         String url = "http://localhost:8043/api/v1/bookstore/" + saved.getBookstoreId();
@@ -77,7 +77,7 @@ public class BookstoreApiControllerTest {
     public void 서점_등록된다() throws Exception {
         // given
         BookstoreSaveRequestDto requestDto = BookstoreSaveRequestDto.builder()
-                .storeName(storeName)
+                .bookstoreName(storeName)
                 .address(address)
                 .phoneNo(phoneNo)
                 .build();

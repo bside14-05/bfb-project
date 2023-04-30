@@ -22,11 +22,6 @@ public class BookstoreRepositoryTest {
     private BookstoreRepository bookstoreRepository;
 
     private String storeName = "작은책방";
-<<<<<<< HEAD
-    private String ownerName = "김미희";
-=======
-//    private String ownerName = "김미희";
->>>>>>> origin/bookstore
     private String address = "서울시 강남구 방배동";
     private String phoneNo = "010-9999-2222";
 
@@ -39,7 +34,7 @@ public class BookstoreRepositoryTest {
     public void BaseEntity_등록() {
         // given
         LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
-        bookstoreRepository.save(Bookstore.builder().storeName(storeName).build());
+        bookstoreRepository.save(Bookstore.builder().bookstoreName(storeName).build());
 
         // when
         List<Bookstore> bookstoreList = bookstoreRepository.findAll();
@@ -55,12 +50,7 @@ public class BookstoreRepositoryTest {
     public void 서점_저장_후_목록_불러오기() {
         // given
         bookstoreRepository.save(Bookstore.builder()
-                .storeName(storeName)
-<<<<<<< HEAD
-                .ownerName(ownerName)
-=======
-//                .ownerName(ownerName)
->>>>>>> origin/bookstore
+                .bookstoreName(storeName)
                 .address(address)
                 .phoneNo(phoneNo)
                 .build());
@@ -70,12 +60,7 @@ public class BookstoreRepositoryTest {
 
         // then
         Bookstore bookstore = bookstoreList.get(0);
-        assertThat(bookstore.getStoreName()).isEqualTo(storeName);
-<<<<<<< HEAD
-        assertThat(bookstore.getOwnerName()).isEqualTo(ownerName);
-=======
-//        assertThat(bookstore.getOwnerName()).isEqualTo(ownerName);
->>>>>>> origin/bookstore
+        assertThat(bookstore.getBookstoreName()).isEqualTo(storeName);
     }
 
 }

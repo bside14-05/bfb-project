@@ -81,6 +81,14 @@ public class Bookstore extends BaseEntity {
     @JoinColumn(name = "bookstore_id")
     private List<BusinessHours> businessHours;
 
+    public boolean isHasSpecializedBook() {
+        return hasSpecializedBook;
+    }
+
+    public boolean isHasComprehensiveBook() {
+        return hasComprehensiveBook;
+    }
+
     @Builder
     public Bookstore(String bookstoreName, String ownerComment, String address, String phoneNo, String instagramId, String facebookId, String blogId, String website, String programCategory1, String programCategory2, String programCategory3, boolean isBeverageAlcohol, boolean isArtExhibition, boolean isMerchandiseSale, boolean isProgramOperating, boolean isOther, boolean hasIndieBook, boolean hasSpecializedBook, boolean hasComprehensiveBook, boolean hasForeignBook) {
         this.bookstoreName = bookstoreName;
