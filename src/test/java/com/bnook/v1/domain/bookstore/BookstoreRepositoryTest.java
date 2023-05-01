@@ -21,8 +21,7 @@ public class BookstoreRepositoryTest {
     @Autowired
     private BookstoreRepository bookstoreRepository;
 
-    private String storeName = "작은책방";
-    private String ownerName = "김미희";
+    private String bookstoreName = "작은책방";
     private String address = "서울시 강남구 방배동";
     private String phoneNo = "010-9999-2222";
 
@@ -35,7 +34,7 @@ public class BookstoreRepositoryTest {
     public void BaseEntity_등록() {
         // given
         LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
-        bookstoreRepository.save(Bookstore.builder().storeName(storeName).build());
+        bookstoreRepository.save(Bookstore.builder().storeName(bookstoreName).build());
 
         // when
         List<Bookstore> bookstoreList = bookstoreRepository.findAll();
@@ -51,8 +50,7 @@ public class BookstoreRepositoryTest {
     public void 서점_저장_후_목록_불러오기() {
         // given
         bookstoreRepository.save(Bookstore.builder()
-                .storeName(storeName)
-                .ownerName(ownerName)
+                .bookstoreName(bookstoreName)
                 .address(address)
                 .phoneNo(phoneNo)
                 .build());
@@ -62,8 +60,7 @@ public class BookstoreRepositoryTest {
 
         // then
         Bookstore bookstore = bookstoreList.get(0);
-        assertThat(bookstore.getStoreName()).isEqualTo(storeName);
-        assertThat(bookstore.getOwnerName()).isEqualTo(ownerName);
+        assertThat(bookstore.getStoreName()).isEqualTo(bookstoreName);
     }
 
 }
