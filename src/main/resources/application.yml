@@ -14,10 +14,11 @@ spring:
         format_sql: true
         globally_quoted_identifiers: true
         hbm2ddl:
-          auto: update # 개발 서버에서만 사용
+          auto: create # 개발 서버에서만 사용
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/bnook
+    url: jdbc:mariadb://localhost:3306/bnook #로컬테스트
+#    url: jdbc:mariadb://docker-compose-db-1:3306/bnook #mariadb 컨테이너명
     username: root
     password: root
 #    hikari:

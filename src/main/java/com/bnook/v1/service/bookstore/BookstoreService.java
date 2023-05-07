@@ -34,7 +34,7 @@ public class BookstoreService {
 
     @Transactional
     public Long save(BookstoreSaveRequestDto requestDto) {
-        return bookstoreRepository.save(requestDto.toEntity()).getStoreId();
+        return bookstoreRepository.save(requestDto.toEntity()).getBookstoreId();
     }
 
     @Transactional
