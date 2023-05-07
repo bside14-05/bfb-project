@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface BookstoreRepository extends JpaRepository<Bookstore, Long> {
 
-    @Query("SELECT b FROM Bookstore b ORDER BY b.storeId DESC")
+    @Query("SELECT b FROM Bookstore b ORDER BY b.bookstoreId DESC")
     List<Bookstore> findAllDesc();
+
 }

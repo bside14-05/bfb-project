@@ -34,7 +34,8 @@ public class BookstoreRepositoryTest {
     public void BaseEntity_등록() {
         // given
         LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
-        bookstoreRepository.save(Bookstore.builder().storeName(bookstoreName).build());
+
+        bookstoreRepository.save(Bookstore.builder().bookstoreName(bookstoreName).build());
 
         // when
         List<Bookstore> bookstoreList = bookstoreRepository.findAll();
@@ -48,6 +49,11 @@ public class BookstoreRepositoryTest {
 
     @Test
     public void 서점_저장_후_목록_불러오기() {
+
+        bookstoreName = "비사이드책방";
+        address = "서울시 동작구";
+        phoneNo = "02-1234-5678";
+
         // given
         bookstoreRepository.save(Bookstore.builder()
                 .bookstoreName(bookstoreName)
@@ -60,7 +66,8 @@ public class BookstoreRepositoryTest {
 
         // then
         Bookstore bookstore = bookstoreList.get(0);
-        assertThat(bookstore.getStoreName()).isEqualTo(bookstoreName);
+
+        assertThat(bookstore.getBookstoreName()).isEqualTo(bookstoreName);
     }
 
 }
