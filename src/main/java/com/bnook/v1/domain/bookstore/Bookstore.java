@@ -51,46 +51,38 @@ public class Bookstore extends BaseEntity {
     private String programCategory3;
 
     @Column(name = "is_beverage_alcohol")
-    private boolean isBeverageAlcohol;
+    private String isBeverageAlcohol;
 
     @Column(name = "is_art_exhibition")
-    private boolean isArtExhibition;
+    private String isArtExhibition;
 
     @Column(name = "is_merchandise_sale")
-    private boolean isMerchandiseSale;
+    private String isMerchandiseSale;
 
     @Column(name = "is_program_operating")
-    private boolean isProgramOperating;
+    private String isProgramOperating;
 
     @Column(name = "is_other")
-    private boolean isOther;
+    private String isOther;
 
     @Column(name = "has_indie_book")
-    private boolean hasIndieBook;
+    private String hasIndieBook;
 
     @Column(name = "has_specialized_book")
-    private boolean hasSpecializedBook;
+    private String hasSpecializedBook;
 
     @Column(name = "has_comprehensive_book")
-    private boolean hasComprehensiveBook;
+    private String hasComprehensiveBook;
 
     @Column(name = "has_foreign_book")
-    private boolean hasForeignBook;
+    private String hasForeignBook;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "bookstore_id")
     private List<BusinessHours> businessHours;
 
-    public boolean isHasSpecializedBook() {
-        return hasSpecializedBook;
-    }
-
-    public boolean isHasComprehensiveBook() {
-        return hasComprehensiveBook;
-    }
-
     @Builder
-    public Bookstore(String bookstoreName, String ownerComment, String address, String phoneNo, String instagramId, String facebookId, String blogId, String website, String programCategory1, String programCategory2, String programCategory3, boolean isBeverageAlcohol, boolean isArtExhibition, boolean isMerchandiseSale, boolean isProgramOperating, boolean isOther, boolean hasIndieBook, boolean hasSpecializedBook, boolean hasComprehensiveBook, boolean hasForeignBook) {
+    public Bookstore(String bookstoreName, String ownerComment, String address, String phoneNo, String instagramId, String facebookId, String blogId, String website, String programCategory1, String programCategory2, String programCategory3, String isBeverageAlcohol, String isArtExhibition, String isMerchandiseSale, String isProgramOperating, String isOther, String hasIndieBook, String hasSpecializedBook, String hasComprehensiveBook, String hasForeignBook) {
         this.bookstoreName = bookstoreName;
         this.ownerComment = ownerComment;
         this.address = address;
@@ -113,7 +105,7 @@ public class Bookstore extends BaseEntity {
         this.hasForeignBook = hasForeignBook;
     }
 
-    public void update(String bookstoreName, String ownerComment, String address, String phoneNo, String instagramId, String facebookId, String blogId, String website, String programCategory1, String programCategory2, String programCategory3, boolean isBeverageAlcohol, boolean isArtExhibition, boolean isMerchandiseSale, boolean isProgramOperating, boolean isOther, boolean hasIndieBook, boolean hasSpecializedBook, boolean hasComprehensiveBook, boolean hasForeignBook) {
+    public void update(String bookstoreName, String ownerComment, String address, String phoneNo, String instagramId, String facebookId, String blogId, String website, String programCategory1, String programCategory2, String programCategory3, String isBeverageAlcohol, String isArtExhibition, String isMerchandiseSale, String isProgramOperating, String isOther, String hasIndieBook, String hasSpecializedBook, String hasComprehensiveBook, String hasForeignBook) {
         this.bookstoreName = bookstoreName;
         this.ownerComment = ownerComment;
         this.address = address;

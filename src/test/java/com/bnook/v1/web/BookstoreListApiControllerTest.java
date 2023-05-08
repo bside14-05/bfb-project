@@ -2,8 +2,7 @@ package com.bnook.v1.web;
 
 import com.bnook.v1.domain.bookstore.Bookstore;
 import com.bnook.v1.domain.bookstore.BookstoreRepository;
-import com.bnook.v1.web.dto.BookstoreSaveRequestDto;
-import com.bnook.v1.web.dto.BookstoreUpdateRequestDto;
+import com.bnook.v1.web.dto.BookstoreRequestDto;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class BookstoreApiControllerTest {
+public class BookstoreListApiControllerTest {
 
     @Autowired
     private BookstoreRepository bookstoreRepository;
@@ -31,7 +30,7 @@ public class BookstoreApiControllerTest {
     @Autowired
     private TestRestTemplate testRestTemplate;
 
-    private String url = "http://localhost:8043/api/v1/bookstore";
+    private String url = "http://localhost:8043/bookstore";
 
     private String storeName = "작은책방";
     private String address = "서울시 강남구 방배동";
@@ -53,13 +52,13 @@ public class BookstoreApiControllerTest {
 
         String expectedStoreName = "큰책방";
 
-        BookstoreUpdateRequestDto requestDto = BookstoreUpdateRequestDto.builder()
+        BookstoreRequestDto requestDto = BookstoreRequestDto.builder()
                 .bookstoreName(expectedStoreName)
                 .build();
 
-        String url = "http://localhost:8043/api/v1/bookstore/" + saved.getBookstoreId();
+        String url = "http://localhost:8043/bookstore/" + saved.getBookstoreId();
 
-        HttpEntity<BookstoreUpdateRequestDto> httpEntity = new HttpEntity<>(requestDto);
+        HttpEntity<BookstoreRequestDto> httpEntity = new HttpEntity<>(requestDto);
 
         // when
         ResponseEntity<Long> responseEntity = testRestTemplate.exchange(url, HttpMethod.PUT, httpEntity, Long.class);
@@ -76,7 +75,7 @@ public class BookstoreApiControllerTest {
     @Test
     public void 서점_등록된다() throws Exception {
         // given
-        BookstoreSaveRequestDto requestDto = BookstoreSaveRequestDto.builder()
+        BookstoreRequestDto requestDto = BookstoreRequestDto.builder()
                 .bookstoreName(storeName)
                 .address(address)
                 .phoneNo(phoneNo)

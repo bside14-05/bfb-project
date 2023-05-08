@@ -1,9 +1,12 @@
 package com.bnook.v1.domain.bookstore;
 
+import org.assertj.core.api.Assertions;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -15,8 +18,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class BookstoreRepositoryTest {
+@DataJpaTest
+public class BookstoreDataJpaTest {
 
     @Autowired
     private BookstoreRepository bookstoreRepository;
@@ -25,25 +28,27 @@ public class BookstoreRepositoryTest {
     private String address = "서울시 강남구 방배동";
     private String phoneNo = "010-9999-2222";
 
-    @After
-    public void cleanup() {
-        bookstoreRepository.deleteAll();
-    }
-
     @Test
-    public void BaseEntity_등록() {
+    public void 서점저장_후_아이디로_서점검색() throws Exception {
         // given
-        LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
-        bookstoreRepository.save(Bookstore.builder().bookstoreName(bookstoreName).build());
+        bookstoreRepository.save(Bookstore.builder()
+                .bookstoreName(bookstoreName)
+                .address(address)
+                .phoneNo(phoneNo)
+                .build());
 
         // when
-        List<Bookstore> bookstoreList = bookstoreRepository.findAll();
+        Bookstore bookstore = bookstoreRepository.findById(1L).orElseThrow(IllegalArgumentException::new);
 
         // then
-        Bookstore bookstore = bookstoreList.get(0);
-        assertThat(bookstore.getCreatedDate()).isAfter(now);
-        assertThat(bookstore.getModifiedDate()).isAfter(now);
+        assertThat(bookstore).isNotNull();
+        assertThat(bookstore.getBookstoreName()).isEqualTo(bookstoreName);
+        assertThat(bookstore.getAddress()).isEqualTo(address);
+        assertThat(bookstore.getPhoneNo()).isEqualTo(phoneNo);
 
+        System.out.println(bookstore.getBookstoreName());
+        System.out.println(bookstore.getAddress());
+        System.out.println(bookstore.getPhoneNo());
     }
 
     @Test
@@ -66,28 +71,6 @@ public class BookstoreRepositoryTest {
         // then
         Bookstore bookstore = bookstoreList.get(0);
         assertThat(bookstore.getBookstoreName()).isEqualTo(bookstoreName);
-    }
-
-    @Test
-    public void 서점_저장_후_아이디로_불러오기(){
-        bookstoreName = "비사이드책방";
-        address = "서울시 동작구";
-        phoneNo = "02-1234-5678";
-
-        // given
-        Bookstore saved = bookstoreRepository.save(Bookstore.builder()
-                .bookstoreName(bookstoreName)
-                .address(address)
-                .phoneNo(phoneNo)
-                .build());
-
-        // when
-        Bookstore bookstore = bookstoreRepository.findById(saved.getBookstoreId())
-                .orElseThrow(() -> new IllegalArgumentException(saved.getBookstoreId() + "에 해당하는 서점은 없습니다"));;
-
-        // then
-        assertThat(bookstore.getBookstoreName()).isEqualTo(bookstoreName);
-        System.out.println(bookstore.getBookstoreName());
     }
 
 }

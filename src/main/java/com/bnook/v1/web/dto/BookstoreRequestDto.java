@@ -4,13 +4,13 @@ import com.bnook.v1.domain.bookstore.Bookstore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
-public class BookstoreSaveRequestDto {
-    private Long bookstoreId;
+public class BookstoreRequestDto {
     private String bookstoreName;
     private String ownerComment;
     private String address;
@@ -22,20 +22,20 @@ public class BookstoreSaveRequestDto {
     private String programCategory1;
     private String programCategory2;
     private String programCategory3;
-    private boolean isBeverageAlcohol;
-    private boolean isArtExhibition;
-    private boolean isMerchandiseSale;
-    private boolean isProgramOperating;
-    private boolean isOther;
-    private boolean hasIndieBook;
-    private boolean hasSpecializedBook;
-    private boolean hasComprehensiveBook;
-    private boolean hasForeignBook;
+    private String isBeverageAlcohol;
+    private String isArtExhibition;
+    private String isMerchandiseSale;
+    private String isProgramOperating;
+    private String isOther;
+    private String hasIndieBook;
+    private String hasSpecializedBook;
+    private String hasComprehensiveBook;
+    private String hasForeignBook;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 
     @Builder
-    public BookstoreSaveRequestDto(String bookstoreName, String ownerComment, String address, String phoneNo, String instagramId, String facebookId, String blogId, String website, String programCategory1, String programCategory2, String programCategory3, boolean isBeverageAlcohol, boolean isArtExhibition, boolean isMerchandiseSale, boolean isProgramOperating, boolean isOther, boolean hasIndieBook, boolean hasSpecializedBook, boolean hasComprehensiveBook, boolean hasForeignBook) {
+    public BookstoreRequestDto(String bookstoreName, String ownerComment, String address, String phoneNo, String instagramId, String facebookId, String blogId, String website, String programCategory1, String programCategory2, String programCategory3, String isBeverageAlcohol, String isArtExhibition, String isMerchandiseSale, String isProgramOperating, String isOther, String hasIndieBook, String hasSpecializedBook, String hasComprehensiveBook, String hasForeignBook) {
         this.bookstoreName = bookstoreName;
         this.ownerComment = ownerComment;
         this.address = address;
