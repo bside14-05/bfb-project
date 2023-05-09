@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.awt.print.Book;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -17,17 +18,16 @@ public class BookstoreService {
 
     private final BookstoreRepository bookstoreRepository;
 
-    @Transactional(readOnly = true)
-    public BookstoreResponseDto findById(Long bookstoreId) throws Exception {
-        Bookstore entity = bookstoreRepository.findById(bookstoreId)
-                .orElseThrow(() -> new IllegalArgumentException(bookstoreId + "에 해당하는 서점은 없습니다"));
-        return new BookstoreResponseDto(entity);
-    }
+//    @Transactional(readOnly = true)
+//    public BookstoreResponseDto findById(Long bookstoreId) throws Exception {
+//        Bookstore entity = bookstoreRepository.findById(bookstoreId)
+//                .orElseThrow(() -> new IllegalArgumentException(bookstoreId + "에 해당하는 서점은 없습니다"));
+//        return new BookstoreResponseDto(entity);
+//    }
 
     @Transactional
-    public BookstoreResponseDto findBookstoreBusinessHours(Long bookstoreId) throws Exception{
-        Bookstore entity = bookstoreRepository.findBookstoreBusinessHours(bookstoreId);
-        return new BookstoreResponseDto(entity);
+    public BookstoreResponseDto getBookstoreJoinedBusinessHours(Long bookstoreId) throws Exception{
+        return bookstoreRepository.getBookstoreJoinedBusinessHours(bookstoreId);
     }
 
     @Transactional(readOnly = true)

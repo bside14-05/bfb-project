@@ -1,21 +1,17 @@
 package com.bnook.v1.domain.bookstore;
 
-import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Assert;
+
+import com.bnook.v1.web.dto.BookstoreResponseDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
+
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -27,6 +23,16 @@ public class BookstoreDataJpaTest {
     private String bookstoreName = "작은책방";
     private String address = "서울시 강남구 방배동";
     private String phoneNo = "010-9999-2222";
+
+    @Test
+    public void 조인해서_불러오기(){
+        BookstoreResponseDto bookstoreResponseDto = bookstoreRepository.getBookstoreJoinedBusinessHours(1L);
+
+        System.out.println(bookstoreResponseDto.getBookstoreId());
+        System.out.println(bookstoreResponseDto.getBookstoreName());
+        System.out.println(bookstoreResponseDto.getAddress());
+
+    }
 
     @Test
     public void 서점저장_후_아이디로_서점검색() throws Exception {

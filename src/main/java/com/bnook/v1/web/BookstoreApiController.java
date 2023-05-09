@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @RequestMapping("/bookstore")
@@ -19,8 +20,7 @@ public class BookstoreApiController {
 
     @GetMapping("/{bookstoreId}")
     public BookstoreResponseDto bookstoreDetails(@PathVariable Long bookstoreId) throws Exception {
-//        return bookstoreService.findById(bookstoreId);
-        return bookstoreService.findBookstoreBusinessHours(bookstoreId);
+        return bookstoreService.getBookstoreJoinedBusinessHours(bookstoreId);
     }
 
 //    @GetMapping

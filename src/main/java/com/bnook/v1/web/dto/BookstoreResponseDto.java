@@ -1,11 +1,20 @@
 package com.bnook.v1.web.dto;
 
 import com.bnook.v1.domain.bookstore.Bookstore;
+import com.bnook.v1.domain.bookstore.BusinessHours;
+import com.bnook.v1.domain.bookstore.BusinessHours_listVer;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Optional;
 
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class BookstoreResponseDto {
     private Long bookstoreId;
     private String bookstoreName;
@@ -28,33 +37,65 @@ public class BookstoreResponseDto {
     private String hasSpecializedBook;
     private String hasComprehensiveBook;
     private String hasForeignBook;
-    private LocalDateTime createdDate;
-    private LocalDateTime modifiedDate;
 
-    public BookstoreResponseDto(Bookstore entity) {
-        this.bookstoreId = entity.getBookstoreId();
-        this.bookstoreName = entity.getBookstoreName();
-        this.ownerComment = entity.getOwnerComment();
-        this.address = entity.getAddress();
-        this.phoneNo = entity.getPhoneNo();
-        this.instagramId = entity.getInstagramId();
-        this.facebookId = entity.getFacebookId();
-        this.blogId = entity.getBlogId();
-        this.website = entity.getWebsite();
-        this.programCategory1 = entity.getProgramCategory1();
-        this.programCategory2 = entity.getProgramCategory2();
-        this.programCategory3 = entity.getProgramCategory3();
-        this.isBeverageAlcohol = entity.getIsBeverageAlcohol();
-        this.isBeverageAlcohol = entity.getIsBeverageAlcohol();
-        this.isArtExhibition = entity.getIsArtExhibition();
-        this.isMerchandiseSale = entity.getIsMerchandiseSale();
-        this.isProgramOperating = entity.getIsProgramOperating();
-        this.isOther = entity.getIsOther();
-        this.hasIndieBook = entity.getHasIndieBook();
-        this.hasComprehensiveBook = entity.getHasComprehensiveBook();
-        this.hasSpecializedBook = entity.getHasSpecializedBook();
-        this.hasForeignBook = entity.getHasForeignBook();
-        this.createdDate = entity.getCreatedDate();
-        this.modifiedDate = entity.getModifiedDate();
+//    private Optional<BusinessHoursResponseDto> businessHours;
+
+//    private LocalTime monOpenTime;
+//    private LocalTime monCloseTime;
+//    private LocalTime tueOpenTime;
+//    private LocalTime tueCloseTime;
+//    private LocalTime wedOpenTime;
+//    private LocalTime wedCloseTime;
+//    private LocalTime thuOpenTime;
+//    private LocalTime thuCloseTime;
+//    private LocalTime friOpenTime;
+//    private LocalTime friCloseTime;
+//    private LocalTime satOpenTime;
+//    private LocalTime satCloseTime;
+//    private LocalTime sunOpenTime;
+//    private LocalTime sunCloseTime;
+
+    public BookstoreResponseDto(Bookstore bookstore, BusinessHours businessHours) {
+        this.bookstoreId = bookstore.getBookstoreId();
+        this.bookstoreName = bookstore.getBookstoreName();
+        this.ownerComment = bookstore.getOwnerComment();
+        this.address = bookstore.getAddress();
+        this.phoneNo = bookstore.getPhoneNo();
+        this.instagramId = bookstore.getInstagramId();
+        this.facebookId = bookstore.getFacebookId();
+        this.blogId = bookstore.getBlogId();
+        this.website = bookstore.getWebsite();
+        this.programCategory1 = bookstore.getProgramCategory1();
+        this.programCategory2 = bookstore.getProgramCategory2();
+        this.programCategory3 = bookstore.getProgramCategory3();
+        this.isBeverageAlcohol = bookstore.getIsBeverageAlcohol();
+        this.isBeverageAlcohol = bookstore.getIsBeverageAlcohol();
+        this.isArtExhibition = bookstore.getIsArtExhibition();
+        this.isMerchandiseSale = bookstore.getIsMerchandiseSale();
+        this.isProgramOperating = bookstore.getIsProgramOperating();
+        this.isOther = bookstore.getIsOther();
+        this.hasIndieBook = bookstore.getHasIndieBook();
+        this.hasComprehensiveBook = bookstore.getHasComprehensiveBook();
+        this.hasSpecializedBook = bookstore.getHasSpecializedBook();
+        this.hasForeignBook = bookstore.getHasForeignBook();
+
+//        this.businessHours = Optional.ofNullable(businessHours)
+//                .map(BusinessHoursResponseDto::new);
+
+//        this.monOpenTime = businessHours.getMonOpenTime();
+//        this.monCloseTime = businessHours.getMonCloseTime();
+//        this.tueOpenTime = businessHours.getTueOpenTime();
+//        this.tueCloseTime = businessHours.getTueCloseTime();
+//        this.wedOpenTime = businessHours.getWedOpenTime();
+//        this.wedCloseTime = businessHours.getWedCloseTime();
+//        this.thuOpenTime = businessHours.getThuOpenTime();
+//        this.thuCloseTime = businessHours.getThuCloseTime();
+//        this.friOpenTime = businessHours.getFriOpenTime();
+//        this.friCloseTime = businessHours.getFriCloseTime();
+//        this.satOpenTime = businessHours.getSatOpenTime();
+//        this.satCloseTime = businessHours.getSatCloseTime();
+//        this.sunOpenTime = businessHours.getSunOpenTime();
+//        this.sunCloseTime = businessHours.getSunCloseTime();
     }
+
 }

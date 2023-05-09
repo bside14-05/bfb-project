@@ -7,9 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @DynamicUpdate
 @Getter
 @NoArgsConstructor
@@ -79,8 +76,9 @@ public class Bookstore extends BaseEntity {
     @Column(name = "has_foreign_book")
     private String hasForeignBook;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<BusinessHours> businessHoursList = new ArrayList<>();
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "business_hours_id")
+    private BusinessHours businessHours;
 
     @Builder
     public Bookstore(String bookstoreName, String ownerComment, String address, String phoneNo, String instagramId, String facebookId, String blogId, String website, String programCategory1, String programCategory2, String programCategory3, String isBeverageAlcohol, String isArtExhibition, String isMerchandiseSale, String isProgramOperating, String isOther, String hasIndieBook, String hasSpecializedBook, String hasComprehensiveBook, String hasForeignBook) {
