@@ -11,17 +11,19 @@ import java.time.LocalTime;
 @Getter
 @Entity
 @Table(name = "business_hours")
-public class BusinessHours extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class BusinessHours {
 
-    @Column(name = "day_of_week")
-    private String dayOfWeek;
+    @EmbeddedId
+    private BusinessHoursId businessHoursId;
 
     @Column(name = "open_time")
     private LocalTime openTime;
 
     @Column(name = "close_time")
     private LocalTime closeTime;
+
+//    @ManyToOne
+//    @JoinColumn(name = "bookstore_id", referencedColumnName = "bookstore_id")
+//    private Bookstore bookstore;
+
 }

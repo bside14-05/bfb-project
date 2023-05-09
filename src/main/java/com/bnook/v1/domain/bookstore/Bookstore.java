@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @DynamicUpdate
@@ -14,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Bookstore extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bookstore_id")
@@ -78,8 +80,7 @@ public class Bookstore extends BaseEntity {
     private String hasForeignBook;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "bookstore_id")
-    private List<BusinessHours> businessHours;
+    private List<BusinessHours> businessHoursList = new ArrayList<>();
 
     @Builder
     public Bookstore(String bookstoreName, String ownerComment, String address, String phoneNo, String instagramId, String facebookId, String blogId, String website, String programCategory1, String programCategory2, String programCategory3, String isBeverageAlcohol, String isArtExhibition, String isMerchandiseSale, String isProgramOperating, String isOther, String hasIndieBook, String hasSpecializedBook, String hasComprehensiveBook, String hasForeignBook) {
